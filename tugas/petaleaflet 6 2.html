@@ -1,0 +1,96 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+    <title>Peta Fakultas Teknik</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+   
+        <style> 
+        h3 {
+        border: 8px
+        }
+        html, body, section
+        {
+        position: relative;
+        height: 100%;
+        background-color: rgb(250, 225, 194);
+        }
+        html   {scroll-behavior: smooth;}
+        #map {
+        width: 1270px;
+        height: 520px;
+        }
+
+        </style> 
+    </head> 
+    <body> 
+        <center><h3 style="color:rgb(134, 62, 62);"><b>PETA FAKULTAS TEKNIK UNIVERSITAS GADJAH MADA</h3></center>
+        <div id="map"></div>
+        <script>
+        var bgnIcon = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/1675/1675404.png',
+            iconSize:     [25, 25], // size of the icon
+            iconAnchor:   [10, 25], // point of the icon which will correspond to marker's location
+            popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+        });
+        
+        var tmnIcon = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/2559/2559368.png',
+            iconSize:     [20, 20], // size of the icon
+            iconAnchor:   [10, 25], // point of the icon which will correspond to marker's location
+            popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+        });
+        
+        var sipil       = L.marker([-7.76409420094852, 110.37312936134265], {icon: bgnIcon}).bindPopup('Teknik Sipil'),
+            gd          = L.marker([-7.7639539651321385, 110.37262081764653], {icon: bgnIcon}).bindPopup('Teknik Geodesi'),
+            arsi        = L.marker([-7.764024917452266, 110.37222568037639], {icon: bgnIcon}).bindPopup('Teknik Arsitektur'),
+            pwk         = L.marker([-7.763987912292509, 110.37160485845943], {icon: bgnIcon}).bindPopup('Teknik Perencanaan Wilayah dan Kota'),
+            kimia       = L.marker([-7.765225808746508, 110.37157583455418], {icon: bgnIcon}).bindPopup('Teknik Kimia'),
+            mesinindus  = L.marker([-7.765871902359708, 110.37130562043482], {icon: bgnIcon}).bindPopup('Teknik Mesin dan Industri'),
+            elekinfor   = L.marker([-7.765798154754062, 110.37177970868149], {icon: bgnIcon}).bindPopup('Teknik Elektro dan Informasi'),
+            perpus      = L.marker([-7.765948856376023, 110.3725126847454], {icon: bgnIcon}).bindPopup('Perpustakaan FT UGM'),
+            nukfis      = L.marker([-7.766317594153687, 110.37288645398385], {icon: bgnIcon}).bindPopup('Teknik Nuklir dan Fisika');
+            geologi     = L.marker([-7.766051461702787, 110.37325213298126], {icon: bgnIcon}).bindPopup('Teknik Geologi');
+        var bgn = L.layerGroup([sipil, gd, arsi, pwk, kimia, mesinindus, elekinfor, perpus, nukfis, geologi]);
+        
+        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 20,
+            attribution: '© OpenStreetMap'
+        });
+
+        var osm2 = L.tileLayer('https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        var map = L.map('map', {
+            center: [-7.765215825659882, 110.3728191980111],
+            zoom: 18,
+            layers: [osm, bgn]
+        });
+
+        var baseMaps = {
+            "OpenStreetMap": osm,
+            "OpenStreetMap.maps": osm2
+        };
+
+        var overlayMaps = {
+            "Departemen": bgn
+        };
+        
+        var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+        var baseMaps = {
+            "OpenStreetMap": osm,
+            "<span style='color: red'>OpenStreetMap.maps</span>": osm2
+        };
+        
+        var infra      = L.marker([-7.7643505262785215, 110.3726253700053], {icon: tmnIcon})
+                            .bindPopup('<center><img src="tamaninfra.jpeg" width="200px" height="200px" title="Taman Infrastruktur Fakultas Teknik UGM" alt="Taman Infrastruktur Fakultas Teknik UGM"></center><h1>Taman Infrastruktur Fakultas Teknik UGM</h1>'),
+            segi8      = L.marker([-7.765613323585785, 110.37155810068688], {icon: tmnIcon})
+                            .bindPopup('<center><img src="tamansegi8.jpeg" width="200px" height="200px" title="Taman Segi Delapan Fakultas Teknik UGM" alt="Taman Segi Delapan Fakultas Teknik UGM"></center><h1>Taman Segi Delapan Fakultas Teknik UGM</h1>');
+        var tmn = L.layerGroup([infra, segi8]);
+        
+        layerControl.addOverlay(tmn, "Taman FT UGM");
+       </script> 
+    </body> 
+</html>

@@ -1,0 +1,161 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CSS Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+*   {box-sizing: border-box;}
+    body{font-family: Arial, Helvetica, sans-serif;}
+
+/* Style the header */
+header {
+  background-color: #004c4c;
+  padding: 10px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 20%;
+  height: 500px; /* only for demonstration, should be removed */
+  background: #008080;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 80%;
+  background-color: #66b2b2;
+  height: 500px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #004c4c;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+    </style>
+</head>
+
+
+
+<body>
+<header>
+  <h2>City Gallery</h2>
+</header>
+
+<section>
+  <nav>
+    <ul>
+      <li><a href="#">Kediri</a></li>
+      <li><a href="#">Malang</a></li>
+      <li><a href="#">Surabaya</a></li>
+    </ul>
+  </nav>
+  
+  <article>
+    <h1>Tabel Latihan</h1>
+	<table width=80% border="1" bgcolor="#ffffff" bordercolor="#000000">
+		<tr>
+			<th style="border:1px solid #000000;">No</th>
+      <th style="border:1px solid #000000;">Judul Tugas</th>
+      <th style="border:1px solid #000000;">Link</th>
+		</tr>
+    <tr>
+			<td style="border:1px solid #000000;">1</td>
+      <td style="border:1px solid #000000;">New 3</td>
+      <td style="border:1px solid #000000;"><a href="tugas/new 3.html">new 3</a></td>
+		</tr>
+    <tr>
+			<td style="border:1px solid #000000;">2</td>
+      <td style="border:1px solid #000000;">New 4</td>
+      <td style="border:1px solid #000000;"><a href="tugas/new 4.html">new 4</a></td>
+    <tr>
+        <td style="border:1px solid #000000;">3</td>
+        <td style="border:1px solid #000000;">New 5</td>
+        <td style="border:1px solid #000000;"><a href="tugas/new 5.html">new 5</a></td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #000000;">4</td>
+      <td style="border:1px solid #000000;">petaleaflet 2</td>
+      <td style="border:1px solid #000000;"><a href="tugas/petaleaflet 2.html">petaleaflet 2</a></td>
+		</tr>
+    <tr>
+      <td style="border:1px solid #000000;">5</td>
+      <td style="border:1px solid #000000;">petaleaflet 3</td>
+      <td style="border:1px solid #000000;"><a href="tugas/petaleaflet 3.html">petaleaflet 3</a></td>
+		</tr>
+    <tr>
+      <td style="border:1px solid #000000;">6</td>
+      <td style="border:1px solid #000000;">petaleaflet 4</td>
+      <td style="border:1px solid #000000;"><a href="tugas/petaleaflet 4.html">petaleaflet 4</a></td>
+		</tr>
+    <tr>
+      <td style="border:1px solid #000000;">7</td>
+      <td style="border:1px solid #000000;">petaleaflet 4 2</td>
+      <td style="border:1px solid #000000;"><a href="tugas/petaleaflet 4 2.html">petaleaflet 4 2</a></td>
+		</tr>
+    <tr>
+      <td style="border:1px solid #000000;">8</td>
+      <td style="border:1px solid #000000;">petaleaflet 5</td>
+      <td style="border:1px solid #000000;"><a href="tugas/petaleaflet 5.html">petaleaflet 5</a></td>
+		</tr>
+    <tr>
+      <td style="border:1px solid #000000;">9</td>
+      <td style="border:1px solid #000000;">petaleaflet 6</td>
+      <td style="border:1px solid #000000;"><a href="tugas/petaleaflet 6.html">petaleaflet 6</a></td>
+		</tr>
+    <tr>
+      <td style="border:1px solid #000000;">10</td>
+      <td style="border:1px solid #000000;">petaleaflet 6 2</td>
+      <td style="border:1px solid #000000;"><a href="tugas/petaleaflet 6 2.html">petaleaflet 6 2</a></td>
+		</tr>
+    <tr>
+      <td style="border:1px solid #000000;">11</td>
+      <td style="border:1px solid #000000;">petaleaflet 7</td>
+      <td style="border:1px solid #000000;"><a href="tugas/petaleaflet 7.html">petaleaflet 7</a></td>
+		</tr>
+    <tr>
+      <td style="border:1px solid #000000;">12</td>
+      <td style="border:1px solid #000000;">petaleaflet 10</td>
+      <td style="border:1px solid #000000;"><a href="tugas/petaleaflet 10.html">petaleaflet 10</a></td>
+		</tr>
+	</table>
+ </article>
+
+</section>
+
+<footer>
+  <p>Footer</p>
+</footer>
+
+</body>
+</html>

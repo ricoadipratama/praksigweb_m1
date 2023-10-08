@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Leaflet Map</title>
+    <meta charset="utf-8" />
+    <link 
+        rel="stylesheet" 
+        href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+	<link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"
+    />
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script
+        src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+    </script>
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js">
+    </script>
+
+    <script>
+	var firefoxIcon = L.icon({
+		iconUrl: 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/svg/bus.svg',
+		iconSize: [20, 50], // size of the icon
+		});
+	var coolPlaces = new L.LayerGroup();
+
+	L.marker([-7.83529,110.39270],{icon:firefoxIcon})
+       .bindPopup('Halte - Term. Giwangan').addTo(coolPlaces),
+	L.marker([-7.83172,110.39002],{icon:firefoxIcon})
+       .bindPopup('Tpb - Pasar Giwangan 1').addTo(coolPlaces),
+	L.marker([-7.82708,110.38997],{icon:firefoxIcon})
+       .bindPopup('Tpb - Gudang Sgm').addTo(coolPlaces);
+
+	var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+		otmLink = '<a href="http://opentopomap.org/">OpenTopoMap</a>',
+        transportLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
+		
+	var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		osmAttrib = '&copy; ' + osmLink + ' Contributors',
+		otmUrl = 'http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+		otmAttrib = '&copy; '+otmLink+' Contributors',
+		transportUrl = 'http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png',
+		transportAttrib ='&copy; '+transportLink+' Contributors';
+  
+	var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib}),
+		otmMap = L.tileLayer(otmUrl, {attribution: otmAttrib}),
+		transportMap = L.tileLayer(transportUrl, {attribution: transportAttrib});
+
+	var map = L.map('map', {
+       layers: [osmMap] // only add one!
+	    })
+        .setView([-7.83529, 110.39270], 14);
+
+	var baseLayers = {
+	   "OSM Mapnik": osmMap,
+	   "Topogrophy": otmMap,
+	   "Transportasi": transportMap
+	    };
+
+	var overlays = {
+	   "Interesting places": coolPlaces
+       };
+
+	L.control.layers(baseLayers,overlays).addTo(map);
+	
+			var LeafIcon = L.Icon.extend({
+			options: {
+				shadowUrl: 
+				    'https://raw.githubusercontent.com/ionic-team/ionicons/main/src/svg/flag.svg',
+				iconSize:     [18, 18],
+				shadowSize:   [30, 30],
+				iconAnchor:   [15, 30],
+				shadowAnchor: [4, 27],
+				popupAnchor:  [-3, -35]
+			}
+		});
+
+		var greenIcon = new LeafIcon({
+			iconUrl: 'https://raw.githubusercontent.com/ionic-team/ionicons/main/src/svg/ellipsis-vertical.svg'
+			});
+
+		var drawnItems = new L.FeatureGroup();
+		map.addLayer(drawnItems);
+
+		var drawControl = new L.Control.Draw({
+			position: 'topright',
+			draw: {
+				polygon: {
+					shapeOptions: {
+						color: 'purple'
+					},
+					allowIntersection: false,
+					drawError: {
+						color: 'orange',
+						timeout: 1000
+					},
+					showArea: true,
+					metric: false,
+					repeatMode: true
+				},
+				polyline: {
+					shapeOptions: {
+						color: 'red'
+					},
+				},
+				rect: {
+					shapeOptions: {
+						color: 'green'
+					},
+				},
+				circle: {
+					shapeOptions: {
+						color: 'steelblue'
+					},
+				},
+				marker: {
+					icon: greenIcon
+				},
+			},
+			edit: {
+				featureGroup: drawnItems
+			}
+		});
+		map.addControl(drawControl);
+
+		map.on('draw:created', function (e) {
+			var type = e.layerType,
+				layer = e.layer;
+
+			if (type === 'marker') {
+				layer.bindPopup('Lokasi');
+			}
+
+			drawnItems.addLayer(layer);
+		});
+               
+    </script>
+</body>
+</html>
